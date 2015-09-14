@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+  		http://www.springframework.org/schema/beans/spring-beans.xsd
+  	    http://camel.apache.org/schema/spring
+		http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<!-- the Camel route is defined in another XML file -->
+	<import resource="classpath:META-INF/spring/camel-context.xml"></import>
+	
+	<!-- mock endpoint and override activemq bean with a noop stub (DirectComponent) -->
+	<bean id="mockAllEndpoints" class="org.apache.camel.impl.InterceptSendToMockEndpointStrategy"></bean>
+    <bean id="activemq" class="org.apache.camel.component.direct.DirectComponent"></bean>
+</beans>

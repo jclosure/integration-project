@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomersOrders xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="CustomersOrders-v.1.0.0.xsd">
+	<Customers>
+		<Customer CustomerID="token">
+			<CompanyName>CompanyName</CompanyName>
+			<ContactName>ContactName</ContactName>
+			<ContactTitle>ContactTitle</ContactTitle>
+			<Phone>Phone</Phone>
+			<FullAddress CustomerID="token">
+				<Address>Address</Address>
+				<City>City</City>
+				<Region>Region</Region>
+				<PostalCode>PostalCode</PostalCode>
+				<Country>Country</Country>
+			</FullAddress>
+		</Customer>
+	</Customers>
+	<Orders>
+		<Order>
+			<CustomerID>token</CustomerID>
+			<EmployeeID>token</EmployeeID>
+			<OrderDate>2001-12-31T12:00:00</OrderDate>
+			<RequiredDate>2001-12-31T12:00:00</RequiredDate>
+			<ShipInfo ShippedDate="2001-12-31T12:00:00">
+				<ShipVia>0</ShipVia>
+				<Freight>0.0</Freight>
+				<ShipName>ShipName</ShipName>
+				<ShipAddress>ShipAddress</ShipAddress>
+				<ShipCity>ShipCity</ShipCity>
+				<ShipRegion>ShipRegion</ShipRegion>
+				<ShipPostalCode>ShipPostalCode</ShipPostalCode>
+				<ShipCountry>ShipCountry</ShipCountry>
+			</ShipInfo>
+		</Order>
+	</Orders>
+</CustomersOrders>

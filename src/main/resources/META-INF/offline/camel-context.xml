@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:amq="http://activemq.apache.org/schema/core"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+
+	<!-- import your activemq broker -->
+	<import resource="classpath:META-INF/spring/broker.xml" />
+	<!-- import your domain services -->
+	<import resource="classpath:META-INF/spring/domain.xml" />
+
+
+	<!-- locally used and declared processors -->
+	<bean id="customersOrdersModelProcessor"
+		class="com.mycompany.integration.project.processors.CustomersOrdersModelProcessor" />
+	<bean id="customersOrdersXmlDocumentProcessor"
+		class="com.mycompany.integration.project.processors.CustomersOrdersXmlDocumentProcessor" />
+
+	<!-- Configures the Camel Context -->
+	<camelContext id="customers_and_orders_processing" xmlns="http://camel.apache.org/schema/spring">
+		<route id="process_messages_as_models">
+			<from uri="file:src/data1" />
+			<process ref="customersOrdersModelProcessor" id="process_as_model" />
+			<to uri="file:target/output" />
+		</route>
+		<route id="process_messages_as_xml">
+			<from uri="file:src/data2" />
+			<process ref="customersOrdersXmlDocumentProcessor" id="process_as_xml" />
+			<to uri="file:target/output" />
+		</route>
+	</camelContext>
+
+
+</beans>
